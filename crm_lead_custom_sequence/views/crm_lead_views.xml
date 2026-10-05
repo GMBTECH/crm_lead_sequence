@@ -1,0 +1,57 @@
+<odoo>
+    <record id="view_crm_lead_form_inherit_seq" model="ir.ui.view">
+        <field name="name">crm.lead.form.sequence</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add sequence before name -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="lead_seq" readonly="1" invisible="type == 'opportunity'"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_inherit_seq" model="ir.ui.view">
+        <field name="name">crm.lead.tree.sequence</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+
+            <!-- Add sequence before name -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="lead_seq"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="crm_lead_kanban_inherit_sequence" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.sequence</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban"/>
+        <field name="arch" type="xml">
+
+            <!-- Show Lead Sequence below the lead name -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="lead_seq"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="crm_lead_search_inherit_sequence" model="ir.ui.view">
+        <field name="name">crm.lead.search.sequence</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+        <field name="arch" type="xml">
+
+            <!-- Show Lead Sequence below the lead name -->
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="lead_seq"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
